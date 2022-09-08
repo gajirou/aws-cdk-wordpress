@@ -156,7 +156,7 @@ export class ContextGetter {
    *
    * @returnse number: 起動 Task 数
    */
-  public getEcsImage(): number {
+  public getEcsDesiredCount(): number {
     return this.scope.node.tryGetContext(this.stage)['ecs']['desiredcount']
   }
 
@@ -165,7 +165,7 @@ export class ContextGetter {
    *
    * @returnse string: image 名
    */
-   public getEcsDesiredCount(): string {
+   public getEcsImage(): string {
     return this.scope.node.tryGetContext(this.stage)['ecs']['image']
   }
 
