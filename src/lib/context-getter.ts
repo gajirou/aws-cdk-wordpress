@@ -123,7 +123,7 @@ export class ContextGetter {
   }
 
   /**
-   * SG S3 バケット名取得
+   * S3 バケット名取得
    *
    * @returnse string:  S3 バケット
    */
