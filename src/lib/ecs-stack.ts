@@ -1,6 +1,8 @@
 import { Stack, StackProps, aws_ec2, aws_ecs, aws_iam } from 'aws-cdk-lib';
 import * as cdk from 'aws-cdk-lib';
+import * as logs from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
+
 
 import { ContextGetter } from './context-getter';
 
@@ -77,12 +79,22 @@ export class EcsStack extends Stack {
     //   })
     // );
 
+    // CloudWatch ロググループ作成
+    const logGroup = new logs.LogGroup(this, 'logGroup', {
+      logGroupName: context.getResouceName()
+    });
+
     // コンテナ設定
     const container = task.addContainer('container', {
       // コンテナイメージ
       image : aws_ecs.ContainerImage.fromRegistry(context.getEcsImage()),
       // コンテナ名
-      containerName: 'main'
+      containerName: 'main',
+      // ロググループ設定
+      logging: aws_ecs.LogDriver.awsLogs({
+        logGroup: logGroup,
+        streamPrefix: 'ecs'
+      }),
     });
     // ポートマッピング
     container.addPortMappings({
