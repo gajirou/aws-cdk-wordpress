@@ -1,0 +1,16 @@
+services:
+  aws-cdk:
+    build:
+      context: ./docker
+    container_name: aws-cdk
+    env_file:
+      - .env
+    volumes:
+      - type: bind
+        source: ./src
+        target: /root/src/
+      - type: bind
+        source: ~/.aws
+        target: /root/.aws
+    working_dir: /root/src
+    tty: true
