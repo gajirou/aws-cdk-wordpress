@@ -38,7 +38,7 @@ export class WpStack extends Stack {
     // ALB 作成
     new AlbStack(scope, context.getResouceName() + '-alb', props).createAlb(context, vpc, albSg, service, stage)
 
-    // // RDS 作成
+    // RDS 作成
     new RdsStack(scope, context.getResouceName() + '-rds', props).createRds(context, vpc, rdsSg)
   }
 }
