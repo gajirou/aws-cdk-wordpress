@@ -27,7 +27,7 @@ export class WpStack extends Stack {
     const ecsSg = sg.createEcsSg(context, vpc)
     // EC2 用 SG 作成
     const ec2Sg = sg.createEc2Sg(context, vpc, ecsSg)
-    // // RDS 用 SG 作成
+    // RDS 用 SG 作成
     const rdsSg = sg.createRdsSg(context, vpc, ecsSg, ec2Sg)
 
     // EC2 作成
